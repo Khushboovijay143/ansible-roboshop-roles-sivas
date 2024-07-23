@@ -1,0 +1,19 @@
+- name: install golang
+  ansible.builtin.yum:
+    name: golang
+    state: present
+
+- name: Setup Application
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-setup
+
+- name: Setup Dependencies
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: dispatch-dependencies
+
+- name: Start Application
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd-setup

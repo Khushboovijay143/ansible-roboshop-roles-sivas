@@ -1,0 +1,8 @@
+- name: Download the dependencies and build the software
+  ansible.builtin.shell: "{{item}}"
+  args:
+    chdir: /app
+  with_items:
+    - go mod init dispatch
+    - go get
+    - go build
